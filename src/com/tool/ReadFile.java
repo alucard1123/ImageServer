@@ -14,11 +14,12 @@ import java.util.Map;
 public class ReadFile implements FileOperator {
 
     private Map ConfigMap = new HashMap();
+    private String filename = "ImgConf.txt";
     public ReadFile(){
 
     }
     @Override
-    public Map ReadConfile(String filename){
+    public Map ReadConfile(){
         ConfigMap.clear();
         LineOperator lo = new ConvertString();
         try{
@@ -40,8 +41,15 @@ public class ReadFile implements FileOperator {
         }
         return ConfigMap;
     }
-    @Override
-    public Map GetConMap(){
-        return this.ConfigMap;
+    public String ReadConfile(String ArgName){
+        ReadConfile();
+        String ArgValue;
+        if(!ConfigMap.containsKey(ArgName)) {
+            System.out.println("Warning: "+ArgName+" is not exist");
+            ArgValue=null;
+        }else{
+            ArgValue =ConfigMap.get(ArgName).toString();
+        }
+        return ArgValue;
     }
 }

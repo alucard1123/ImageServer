@@ -21,7 +21,7 @@ public class LoadStandardImg implements StandardCreater{
         //load standard img path
         FileOperator fo = new ReadFile();
         LineOperator lo = new ConvertString();
-        Map ConMap = fo.ReadConfile("ImgConf.txt");
+        Map ConMap = fo.ReadConfile();
         String ImgPath = lo.GetArg("path",ConMap);
 
     }

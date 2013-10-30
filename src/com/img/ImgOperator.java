@@ -8,4 +8,5 @@ package com.img;
 public interface ImgOperator {
     //read ImgName x,y RGB
     public String[] ReadImg(int x,int y,String ImgName);
+    public void PrintSupportImgType();
 }

@@ -1,4 +1,8 @@
+ImgConf.txt must named ImgConf.txt use the example below to set arguments of this program.
+key words, 'Debug'
+
 test1:1
 test2:abc
 test3:1:abc
-path:/home/edward/img/LHDBStand
+path:/home/edward/StandardImage/
+Debug:true

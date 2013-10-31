@@ -4,5 +4,5 @@ key words, 'Debug'
 test1:1
 test2:abc
 test3:1:abc
-path:/home/edward/StandardImage/
+path:/home/edward/Code/C++/img/InGame_train/BoxMaker/Lib2/
 Debug:true

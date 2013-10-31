@@ -5,8 +5,10 @@ import com.tool.FileOperator;
 import com.tool.ReadFile;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * User: edward
@@ -23,9 +25,10 @@ public class TiffReader implements ImgOperator{
             InputStream is = new BufferedInputStream(new FileInputStream(image));
             BufferedImage bi = ImageIO.read(is);
             if(debug){
-                System.out.println(bi.getRGB(x, y));
-                System.out.println(bi.getWidth());
-                System.out.println(bi.getHeight());
+                int[] RGB;
+                RGB = getRGBSplit(bi.getRGB(x, y));
+                //System.out.print(Arrays.toString(RGB)+"\t");
+                System.out.print(RGB[3]+"\t");
             }
         } catch (FileNotFoundException e) {
             //may cause read-file exception
@@ -45,6 +48,15 @@ public class TiffReader implements ImgOperator{
         }catch (Exception ex){
             ex.printStackTrace();
         }
+    }
+    private int[] getRGBSplit(int input){
+        Color c = new Color(input);
+        int[] SplitedRGB= new int[4];
+        SplitedRGB[0]=c.getBlue();
+        SplitedRGB[1]=c.getGreen();
+        SplitedRGB[2]=c.getRed();
+        SplitedRGB[3]=SplitedRGB[2]+SplitedRGB[1];
+        return SplitedRGB;
     }
 
 }

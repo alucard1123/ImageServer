@@ -12,6 +12,7 @@ public class RunTimeConf {
     static FileOperator fo = new ReadFile();
     public static boolean isDebug(){
         boolean DebugMark = false;
+        fo.ReadConfile();
         if(fo.ReadConfile("Debug")!=null){
             DebugMark=Boolean.valueOf(fo.ReadConfile("Debug"));
         }

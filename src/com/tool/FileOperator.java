@@ -8,6 +8,7 @@ import java.util.Map;
  * Time: 2:59 PM
  */
 public interface FileOperator {
-    public Map ReadConfile();
+    public void ReadConfile();
     public String ReadConfile(String ArgName);
+    public Map GetArgMap();
 }

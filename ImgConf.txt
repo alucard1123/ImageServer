@@ -1,8 +1,10 @@
-ImgConf.txt must named ImgConf.txt use the example below to set arguments of this program.
-key words, 'Debug'
+#ImgConf.txt must named ImgConf.txt use the example below to set arguments of this program.
+#key words, 'Debug' , 'HTop' ,'HButton' ,'ImgWidth' , 'ImgStartPixel'
 
-test1:1
-test2:abc
-test3:1:abc
 path:/home/edward/Code/C++/img/InGame_train/BoxMaker/Lib2/
 Debug:true
+HTop:11
+HButton:22
+ImgWidth:8
+ImgStartPixel:68
+TailPixel:140

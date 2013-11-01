@@ -16,10 +16,9 @@ public class ReadFile implements FileOperator {
     private Map ConfigMap = new HashMap();
     private String filename = "ImgConf.txt";
     public ReadFile(){
-
     }
     @Override
-    public Map ReadConfile(){
+    public void ReadConfile(){
         ConfigMap.clear();
         LineOperator lo = new ConvertString();
         try{
@@ -29,6 +28,9 @@ public class ReadFile implements FileOperator {
             String[] CuttedLine;
             while (br.ready()){
                 Line = br.readLine();
+                if(Line.isEmpty()||(Line.charAt(0)=='#')){
+                    continue;
+                }
                 CuttedLine = lo.Splitter(Line);
                 ConfigMap.put(CuttedLine[0],lo.SpliceValue(CuttedLine));
             }
@@ -39,10 +41,8 @@ public class ReadFile implements FileOperator {
         catch(NullPointerException en){
             en.printStackTrace();
         }
-        return ConfigMap;
     }
     public String ReadConfile(String ArgName){
-        ReadConfile();
         String ArgValue;
         if(!ConfigMap.containsKey(ArgName)) {
             System.out.println("Warning: "+ArgName+" is not exist");
@@ -51,5 +51,8 @@ public class ReadFile implements FileOperator {
             ArgValue =ConfigMap.get(ArgName).toString();
         }
         return ArgValue;
+    }
+    public Map GetArgMap(){
+        return this.ConfigMap;
     }
 }

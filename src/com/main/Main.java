@@ -1,11 +1,15 @@
 package com.main;
 
-import com.img.ImgOperator;
-import com.img.TiffReader;
+import com.img.*;
 import com.tool.ConvertString;
 import com.tool.FileOperator;
 import com.tool.LineOperator;
 import com.tool.ReadFile;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * User: edward
@@ -18,14 +22,25 @@ public class Main {
         FileOperator fo = new ReadFile();
         LineOperator lo = new ConvertString();
         ImgOperator iop = new TiffReader();
-        if(!Debug){
-            iop.PrintSupportImgType();
+        StandardCreater sc = new LoadStandardImg();
+        sc.LoadStandardImg("test.png");
+        Map testMap = new HashMap();
+        testMap= sc.getStandard();
+        fo.ReadConfile();
+        //testMap=fo.GetArgMap();
+        //debug all members in testMap
+
+        Iterator it = testMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            System.out.println(key+":"+Arrays.toString((int[])value));
         }
-        for(int i=0;i<10;i++){
-            for(int j =11;j<22;j++){
-                iop.ReadImg(68+8*i,j,"test.png");
-            }
-        System.out.println();
-        }
+        ImgCompare ic = new ImgCompare();
+        ic.IdentifiImg("test1.png",testMap);
+
+
+
     }
 }

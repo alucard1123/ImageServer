@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Arrays;
 
 /**
  * User: edward
@@ -17,19 +16,24 @@ import java.util.Arrays;
  */
 public class TiffReader implements ImgOperator{
     private Boolean debug = RunTimeConf.isDebug();
-    public String[] ReadImg(int x,int y,String ImgName){
-        FileOperator fo = new ReadFile();
+    FileOperator fo = new ReadFile();
+    public TiffReader() {
+        fo.ReadConfile();
+    }
+
+    public int[] ReadImg(int x,int y,String ImgName){
+
         String DirName = fo.ReadConfile("path");
         File image = new File(DirName+ImgName);
+        int[] RGB;
         try {
             InputStream is = new BufferedInputStream(new FileInputStream(image));
             BufferedImage bi = ImageIO.read(is);
+            RGB = getRGBSplit(bi.getRGB(x, y));
             if(debug){
-                int[] RGB;
-                RGB = getRGBSplit(bi.getRGB(x, y));
                 //System.out.print(Arrays.toString(RGB)+"\t");
-                System.out.print(RGB[3]+"\t");
             }
+            return RGB;
         } catch (FileNotFoundException e) {
             //may cause read-file exception
             e.printStackTrace();
@@ -51,11 +55,10 @@ public class TiffReader implements ImgOperator{
     }
     private int[] getRGBSplit(int input){
         Color c = new Color(input);
-        int[] SplitedRGB= new int[4];
+        int[] SplitedRGB= new int[3];
         SplitedRGB[0]=c.getBlue();
         SplitedRGB[1]=c.getGreen();
         SplitedRGB[2]=c.getRed();
-        SplitedRGB[3]=SplitedRGB[2]+SplitedRGB[1];
         return SplitedRGB;
     }
 

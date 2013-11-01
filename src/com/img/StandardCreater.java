@@ -9,5 +9,5 @@ import java.util.Map;
  */
 public interface StandardCreater {
     public Map getStandard();
-    public void LoadStandardImg();
+    public void LoadStandardImg(String ImgName);
 }

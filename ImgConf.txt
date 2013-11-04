@@ -8,3 +8,4 @@ HButton:22
 ImgWidth:8
 ImgStartPixel:68
 TailPixel:140
+Blind:10

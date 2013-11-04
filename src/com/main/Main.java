@@ -35,10 +35,11 @@ public class Main {
             Map.Entry entry = (Map.Entry) it.next();
             Object key = entry.getKey();
             Object value = entry.getValue();
-            System.out.println(key+":"+Arrays.toString((int[])value));
+            //System.out.println(key+":"+Arrays.toString((int[])value));
         }
         ImgCompare ic = new ImgCompare();
-        ic.IdentifiImg("test1.png",testMap);
+        String testStr = ic.IdentifiImg("test1.png",testMap);
+        System.out.println(testStr);
 
 
 
